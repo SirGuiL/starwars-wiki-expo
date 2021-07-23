@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardContainer, CardImage } from './styles';
 import { useNavigation } from '@react-navigation/native';
-import { useDataStore } from '~/services/stores';
+import { useDataStore } from '~/services/stores/dataStore';
 
 export const Card = ({ item }) => {
   const { setSelectedData } = useDataStore();
