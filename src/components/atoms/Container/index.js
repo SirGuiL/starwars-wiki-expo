@@ -1,4 +1,4 @@
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   display: flex;
@@ -8,4 +8,8 @@ export const Container = styled.View`
   background: ${({ bg, theme }) => theme.colors[bg || 'dark']};
   width: ${({ theme, w }) => (w ? `${theme.metrics.px(w)}px` : '100%')};
   height: ${({ theme, h }) => (h ? `${theme.metrics.px(h)}px` : '100%')};
-`
+`;
+
+export const ScreenScrollContainer = styled.ScrollView`
+  background: ${({ bg, theme }) => theme.colors[bg || 'dark']};
+`;
