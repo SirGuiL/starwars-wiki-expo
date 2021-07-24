@@ -8,6 +8,7 @@ import {
   Details,
   FavoriteScreen,
   SearchScreen,
+  WatchScreen,
 } from '../screens';
 import { BottomBar } from '~/components/organisms/BottomBar';
 
@@ -40,6 +41,7 @@ export const Routes = () => {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Home" component={BottomRoute} />
         <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen name="Watch" component={WatchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

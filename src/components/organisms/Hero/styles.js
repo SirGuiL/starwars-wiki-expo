@@ -30,3 +30,9 @@ export const ButtonsView = styled.View`
   align-items: baseline;
   justify-content: space-between;
 `;
+
+export const ButtonItemView = styled.View`
+  flex: 1;
+  flex-direction: column;
+  align-items: ${({ align }) => align || 'center'};
+`;
