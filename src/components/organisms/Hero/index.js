@@ -10,7 +10,12 @@ import {
 } from './styles';
 
 import { Text, Logo } from '~/components/atoms';
-import { Tag, IconButton, PlayButton } from '~/components/molecules';
+import {
+  Tag,
+  IconButton,
+  PlayButton,
+  FavoriteStateModal,
+} from '~/components/molecules';
 
 import { colors } from '~/styles/colors';
 
@@ -29,7 +34,6 @@ export const Hero = ({ item, onDetail }) => {
   const checkIsFavorite = async () => {
     setLoading(true);
     const favorites = await getFavorites();
-    // console.log({ favorites })
     const isInFavorite = favorites.filter(
       (fv) => fv.id === item.id && fv.type === item.type
     );
@@ -42,9 +46,17 @@ export const Hero = ({ item, onDetail }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const closeFavoriteModal = () => {
+    setTimeout(() => {
+      setShowFavoriteModal(null);
+    }, 1000);
+  };
+
   const addDataToFavorite = async () => {
     await addFavorite(item);
+    setShowFavoriteModal('added');
     checkIsFavorite();
+    closeFavoriteModal();
   };
 
   const removeDataFromFavorite = async () => {
@@ -55,6 +67,11 @@ export const Hero = ({ item, onDetail }) => {
   const onPressWatch = () => {
     setSelectedData(item);
     navigation.navigate('Watch');
+  };
+
+  const onPressDetail = () => {
+    setSelectedData(item);
+    navigation.navigate('Detail');
   };
 
   return (
@@ -83,12 +100,15 @@ export const Hero = ({ item, onDetail }) => {
                 }
               />
             </ButtonItemView>
+
             <ButtonItemView>
               <PlayButton onPress={onPressWatch} />
             </ButtonItemView>
+
             <ButtonItemView align="flex-end">
               {!onDetail && (
                 <IconButton
+                  onPress={onPressDetail}
                   label="Saiba mais"
                   iconName="information-circle-outline"
                 />
@@ -97,6 +117,13 @@ export const Hero = ({ item, onDetail }) => {
           </ButtonsView>
         </HeroGradient>
       </HeroImageBackground>
+      {!!showFavoriteModal && (
+        <FavoriteStateModal
+          type={showFavoriteModal}
+          visible={!!showFavoriteModal}
+          onClose={() => setShowFavoriteModal(null)}
+        />
+      )}
     </HeroContainer>
   );
 };
