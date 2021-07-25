@@ -7,7 +7,6 @@ export const FavoritesScreen = ({ navigation }) => {
 
   const callGetFavorites = async () => {
     const favorites = await getFavorites();
-    console.log({ favorites });
   };
 
   useEffect(() => {

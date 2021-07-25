@@ -26,19 +26,16 @@ export const Hero = ({ item, onDetail }) => {
   const navigation = useNavigation();
   const { setSelectedData } = useDataStore();
 
-  const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
   const { addFavorite, getFavorites, removeFavorite } = useFavorites();
   const { image_url, title, subtitle, type } = item;
 
   const checkIsFavorite = async () => {
-    setLoading(true);
     const favorites = await getFavorites();
     const isInFavorite = favorites.filter(
       (fv) => fv.id === item.id && fv.type === item.type
     );
     setIsFavorite(isInFavorite.length > 0);
-    setLoading(false);
   };
 
   useEffect(() => {
